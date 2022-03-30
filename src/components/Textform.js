@@ -10,11 +10,14 @@ export default function Textform(props) {
        
         let newtext=text.toUpperCase();
         setText(newtext);
+
+        props.showAlert("Converted to Uppecase","success");
     }
     const handleLoClick=()=>{
         console.log('BUTTON WAS PRESSED');
         let newText=text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to lowercase","success");
     }
 
     const handleOnChange=(event)=>{
@@ -26,6 +29,7 @@ export default function Textform(props) {
         var text=document.getElementById('exampleFormControlTextarea1');
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Text Copied","success")
     }
 
 
@@ -34,17 +38,22 @@ export default function Textform(props) {
         arr.forEach((txt,index)=>{
             if(txt.indexOf('@')===-1)
             {
-                
+                newtet="";
+                setText(newtet);
             }
             else
             {
-                newtet=txt+'\n'+txt;
+                newtet=txt+'\n'+newtet;
                 setText(newtet);
             }
-
-
         });
-
+        if(newtet==="")
+        {
+            props.showAlert("No Emails Found","danger")
+        }
+        else{
+        props.showAlert("Email Fetched Successfully","success");
+        }
     }
     const [text,setText]=useState('Enter the text here');
   return (
