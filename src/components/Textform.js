@@ -1,9 +1,12 @@
 import React,{useState} from 'react'
 
 
+
 export default function Textform(props) {
 
     let newtet='';
+    let dummy='';
+   
 
     const handleUpClick=()=>{
         console.log('BUTTON WAS PRESSED');
@@ -43,9 +46,11 @@ export default function Textform(props) {
             }
             else
             {
+                dummy= dummy + "\n" +  txt;
                 newtet=txt+'\n'+newtet;
-                setText(newtet);
+                // setText(newtet);
             }
+            setText(dummy);
         });
         if(newtet==="")
         {
@@ -85,6 +90,7 @@ export default function Textform(props) {
         <p className={`text-${props.tmode}`}>{text.split(" ").length * 0.08} Minutes to read</p>
         <h2 className={`text-${props.tmode}`}>Preview</h2>
         <p className={`text-${props.tmode}`}>{(text.length>0)?text.toLocaleLowerCase():'Enter the text to preview it'}</p>
+
 
     </div>
 
